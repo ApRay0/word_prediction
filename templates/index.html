@@ -134,6 +134,37 @@
                 </div> -->
             </div>
 
+            <!-- MASKED PREDICTION -->
+            <center>
+                <h3>KG Word Prediction</h3>
+            </center>
+
+            <div class="form-row">
+                <div class="form-group col-md-8">
+                    <br>
+                    <h4>Type a sentence, include &lt;mask&gt; to predict the word and hit Predict.</h4>
+                </div>
+                <div class="form-group col-md-2">
+                    <label></label>
+                    <button type="button" class="btn btn-primary btn-lg btn-block" id="btn-bishe">Predict</button>
+                </div>
+            </div>
+            <div class="form-row">
+                <textarea class="form-control txt_input" id="bishe_input" rows="1"></textarea>
+                <textarea class="form-control txt_input" id="head" rows="1"></textarea>
+                <textarea class="form-control txt_input" id="relation" rows="1"></textarea>
+                <textarea class="form-control txt_input" id="tail" rows="1"></textarea>
+            </div>
+
+            <h4> Predictions </h4>
+            <div class="form-row">
+                <div class="form-group col-md-2">
+                    <label for="text_paragraphs">BISHE</label>
+                    <textarea class="form-control txt_response" id="bishe_output" readonly></textarea>
+                </div>
+            </div>
+
+
 
 
         </div>

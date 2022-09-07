@@ -71,4 +71,30 @@ jQuery(document).ready(function () {
             console.log(jsondata)
         });
     })
+
+    $('#btn-bishe').on('click', function () {
+        $.ajax({
+            url: '/get_bishe_predictions',
+            type: "post",
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify({
+                "bishe_input": $('#bishe_input').val(),
+                "head": $('#head').val(),
+                "relation": $('#relation').val(),
+                "tail": $('#tail').val(),
+            }),
+            beforeSend: function () {
+                $('.overlay').show()
+            },
+            complete: function () {
+                $('.overlay').hide()
+            }
+        }).done(function (jsondata, textStatus, jqXHR) {
+            console.log(jsondata)
+            $('#bishe_output').val(jsondata['bishe_output'])
+        }).fail(function (jsondata, textStatus, jqXHR) {
+            console.log(jsondata)
+        });
+    })
 })

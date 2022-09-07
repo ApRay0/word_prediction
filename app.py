@@ -2,6 +2,7 @@ import flask
 from flask import Flask, request, render_template
 import json
 import main
+import generate
 
 app = Flask(__name__)
 
@@ -31,6 +32,21 @@ def get_prediction_mask():
         input_text = ' '.join(request.json['input_text'].split())
         top_k = request.json['top_k']
         res = main.get_all_predictions(input_text, top_clean=int(top_k))
+        return app.response_class(response=json.dumps(res), status=200, mimetype='application/json')
+    except Exception as error:
+        err = str(error)
+        print(err)
+        return app.response_class(response=json.dumps(err), status=500, mimetype='application/json')
+
+@app.route('/get_bishe_predictions', methods=['post'])
+def get_bishe_predictions():
+    try:
+        bishe_input = ' '.join(request.json['bishe_input'].split())
+        head = request.json['head']
+        relation = request.json['relation']
+        tail = request.json['tail']
+
+        res = generate.preprocess(head, relation, tail)
         return app.response_class(response=json.dumps(res), status=200, mimetype='application/json')
     except Exception as error:
         err = str(error)
